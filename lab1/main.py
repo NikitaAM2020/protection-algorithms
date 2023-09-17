@@ -55,7 +55,6 @@ with open('output.txt', 'w', encoding='utf-8') as output_file:
 
 print('\nЗакодоване та розкодоване повідомлення збережено у файлі "output.txt".')
 
-
 # Англійський алфавіт
 abcEng = 'abcdefghijklmnopqrstuvwxyz'
 
