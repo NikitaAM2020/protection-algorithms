@@ -159,7 +159,7 @@ def calculate_letter_frequency_from_file(file_name):
 file_name = 'plaintext.txt'  # Замініть це на шлях до вашого файлу
 letter_frequency = calculate_letter_frequency_from_file(file_name)
 
-print("\nАналіз частоти буков в тексті")
+print("\nАналіз частоти літер в тексті")
 # Виведення результатів у відсотках
 for char, percentage in letter_frequency.items():
     print(f"'{char}': {percentage:.2f}%")
@@ -209,7 +209,7 @@ def analyze_character_usage_in_ciphertext(file_name, substitution_table):
 file_nameС = 'ciphertext.txt'  # Замініть це на шлях до вашого файлу з криптограмою
 character_usage = analyze_character_usage_in_ciphertext(file_nameС, substitution_table)
 
-print("\nАналіз частоти буков в криптограмі")
+print("\nАналіз частоти цифр в криптограмі")
 # Виведення результатів у відсотках
 for char, percentage in character_usage.items():
     print(f"'{char}': {percentage:.2f}%")
