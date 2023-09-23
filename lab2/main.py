@@ -122,3 +122,42 @@ output_file = 'decrypted.txt'
 decrypt_file(input_file, output_file, substitution_table)
 
 print('Текст успішно розшифровано')
+
+
+def calculate_letter_frequency_from_file(file_name):
+    frequency = {}  # Створюємо пустий словник для зберігання частоти літер
+
+    try:
+        with open(file_name, 'r', encoding='utf-8') as file:
+            text = file.read()
+
+        # Перетворюємо текст у верхній регістр і видаляємо всі символи, окрім літер та пробіла
+        text = text.upper()
+        text = ''.join(filter(lambda char: char.isalpha() or char.isspace(), text))
+
+        total_characters = len(text)  # Загальна кількість символів у тексті
+
+        for char in text:
+            if char in frequency:
+                frequency[char] += 1
+            else:
+                frequency[char] = 1
+
+        # Перетворюємо кількість кожного символу у відсотки
+        for char, count in frequency.items():
+            frequency[char] = (count / total_characters) * 100
+
+    except FileNotFoundError:
+        print(f"Файл '{file_name}' не знайдено.")
+    except Exception as e:
+        print(f"Сталася помилка: {e}")
+
+    return frequency
+
+# Приклад використання функції для аналізу частоти літер та пробіла у файлі
+file_name = 'plaintext.txt'  # Замініть це на шлях до вашого файлу
+letter_frequency = calculate_letter_frequency_from_file(file_name)
+
+# Виведення результатів у відсотках
+for char, percentage in letter_frequency.items():
+    print(f"'{char}': {percentage:.2f}%")
