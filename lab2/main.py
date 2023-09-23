@@ -154,10 +154,62 @@ def calculate_letter_frequency_from_file(file_name):
 
     return frequency
 
+
 # Приклад використання функції для аналізу частоти літер та пробіла у файлі
 file_name = 'plaintext.txt'  # Замініть це на шлях до вашого файлу
 letter_frequency = calculate_letter_frequency_from_file(file_name)
 
+print("\nАналіз частоти буков в тексті")
 # Виведення результатів у відсотках
 for char, percentage in letter_frequency.items():
+    print(f"'{char}': {percentage:.2f}%")
+
+
+def analyze_character_usage_in_ciphertext(file_name, substitution_table):
+    character_count = {}  # Створимо словник для зберігання кількості кожного символу
+
+    try:
+        with open(file_name, 'r', encoding='utf-8') as file:
+            ciphertext = file.read()
+
+        total_characters = len(ciphertext)  # Загальна кількість символів у криптограмі
+
+        # Пройдемося по криптограмі, враховуючи двоцифрові коди
+        i = 0
+        while i < len(ciphertext):
+            # Якщо можливо, витягнемо двоцифровий код
+            if ciphertext[i:i + 2].isdigit():
+                code = ciphertext[i:i + 2]
+                i += 2
+            else:
+                # Якщо не можливо, витягнемо одну цифру
+                code = ciphertext[i]
+                i += 1
+
+            # За допомогою зворотної таблиці визначаємо символ, який відповідає коду
+            char = substitution_table.get(code, code)
+
+            if char in character_count:
+                character_count[char] += 1
+            else:
+                character_count[char] = 1
+
+        # Перетворюємо кількість кожного символу у відсотки
+        for char, count in character_count.items():
+            character_count[char] = (count / total_characters) * 100
+
+    except FileNotFoundError:
+        print(f"Файл '{file_name}' не знайдено.")
+    except Exception as e:
+        print(f"Сталася помилка: {e}")
+
+    return character_count
+
+# Приклад використання функції для аналізу символів у криптограмі на основі substitution_table
+file_nameС = 'ciphertext.txt'  # Замініть це на шлях до вашого файлу з криптограмою
+character_usage = analyze_character_usage_in_ciphertext(file_nameС, substitution_table)
+
+print("\nАналіз частоти буков в криптограмі")
+# Виведення результатів у відсотках
+for char, percentage in character_usage.items():
     print(f"'{char}': {percentage:.2f}%")
