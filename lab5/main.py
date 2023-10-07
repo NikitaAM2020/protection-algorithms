@@ -38,7 +38,7 @@ def main():
 
     # Розшифруйте текст
     decrypted_text = playfair_decrypt(ciphertext, key_table)
-    print("Розшифрований текст:", decrypted_text)
+    print("Розшифрований текст: ", decrypted_text)
 
 
 if __name__ == "__main__":
