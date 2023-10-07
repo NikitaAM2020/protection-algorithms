@@ -205,6 +205,7 @@ def analyze_character_usage_in_ciphertext(file_name, substitution_table):
 
     return character_count
 
+
 # Приклад використання функції для аналізу символів у криптограмі на основі substitution_table
 file_nameС = 'ciphertext.txt'  # Замініть це на шлях до вашого файлу з криптограмою
 character_usage = analyze_character_usage_in_ciphertext(file_nameС, substitution_table)
